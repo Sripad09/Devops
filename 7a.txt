@@ -1,0 +1,27 @@
+Configuration Management with Ansible: Basics of Ansible:
+Inventory, Playbooks, and Modules, Automating Server Configurations
+with Playbooks, Hands-On: Writing and Running a Basic Playbook
+1) Create an inventory called hosts.ini by executing the below command
+gedit hosts.ini
+2) Type the code inside hosts.ini as shown below
+[local]
+localhost ansible_connection=local
+Save and close the file
+3) To test the inventory connectivity, type the below mentioned command
+ansible all -i hosts.ini --list-hosts
+4) To ping the inventory hosts, type the below mentioned command
+ansible all -i hosts.ini -m ping
+5) Create an playbook called firstpb.yml by executing the below command
+gedit firstpb.yml
+6) Type the code inside firstpb.yml as shown below
+- name: First Playbook
+hosts: local
+connection: local
+tasks:
+- name: My first task
+debug:
+msg: "Ansible is a config mgmt tool"
+Save and close the file
+
+7) To run the playbook, type the below mentioned command
+ansible-playbook -i hosts.ini firstpb.yml
