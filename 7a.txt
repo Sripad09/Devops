@@ -15,12 +15,12 @@ ansible all -i hosts.ini -m ping
 gedit firstpb.yml
 6) Type the code inside firstpb.yml as shown below
 - name: First Playbook
-hosts: local
-connection: local
-tasks:
-- name: My first task
-debug:
-msg: "Ansible is a config mgmt tool"
+  hosts: local
+  connection: local
+  tasks:
+    - name: My first task
+      debug:
+        msg: "Ansible is a config mgmt tool"
 Save and close the file
 
 7) To run the playbook, type the below mentioned command
