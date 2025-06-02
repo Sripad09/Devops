@@ -7,16 +7,25 @@ gedit firstmodule.py
 4) Type the code inside firstmodule.py as shown below
 
 #!/usr/bin/python
+
 from ansible.module_utils.basic import AnsibleModule
+
 def walk():
-module_args = dict(
-name=dict(type='str', required=True)
-)
-module = AnsibleModule(argument_spec=module_args)
-result = {"changed": False, "message": f"Welcome, {module.params['name']}!"}
-module.exit_json(**result)
+    module_args = dict(
+        name=dict(type='str', required=True)
+    )
+
+    module = AnsibleModule(argument_spec=module_args)
+   
+    result = {
+        "changed": False,
+        "message": f"Welcome, {module.params['name']}!"
+    }
+
+    module.exit_json(**result)
+
 if __name__ == '__main__':
-walk()
+    walk()
 Save and close the file
 
 5) To come out of the library directory, type the below command
@@ -27,16 +36,17 @@ chmod +x library/firstmodule.py
 7) Create an playbook called secondpb.yml by executing the below command
 ---
 - name: Ansible with one module
-hosts: localhost
-gather_facts: no
-tasks:
-- name: Welcome friends
-firstmodule:
-name: "Ansible"
-register: result
-- name: Show message
-debug:
-msg: "{{ result.message }}"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Welcome friends
+      firstmodule:
+        name: "Ansible"
+      register: result
+
+    - name: Show message
+      debug:
+        msg: "{{ result.message }}"
 
 Save and close the file
 8) To run the playbook, type the below mentioned command
